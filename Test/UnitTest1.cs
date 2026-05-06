@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
+using System.Diagnostics;
 using Logic;
 
 namespace Tests
@@ -10,10 +11,15 @@ namespace Tests
     public class UnitTest1
     {
         private Bolillero bolillero;
-        public UnitTest1()  =>
-            bolillero = new Bolillero(10, new Primero());
-        
-        
+        public UnitTest1() => bolillero = new Bolillero(10, new Primero());
+
+        [Fact]
+        public void SeClona_a_si_Mismo()
+        {
+            var bolilleroClonado = (Bolillero)bolillero.Clone();
+
+            Assert.Equal(10, bolilleroClonado.bolillas.Count);
+        }
         [Fact]
         public void SacarBolilla()
         {
@@ -25,7 +31,7 @@ namespace Tests
 
             Assert.Equal(9, bolillero.bolillas.Count);
 
-            Assert.Single(bolillero.BolillasSacadas);
+            Assert.Single(bolillero.bolillasSacadas);
         }
 
         [Fact]
@@ -35,7 +41,7 @@ namespace Tests
             bolillero.ReIngresar();
 
             Assert.Equal(10, bolillero.bolillas.Count);
-            Assert.Empty(bolillero.BolillasSacadas);
+            Assert.Empty(bolillero.bolillasSacadas);
         }
 
         [Fact]
@@ -55,6 +61,27 @@ namespace Tests
         {
             var rondasGanadas = bolillero.JugarMasVeces(new List<byte>(){0, 1}, 1);
             Assert.Equal(1,rondasGanadas);
+        }
+
+        [Fact]
+        public void TiempoConHilos_es_menor_a_SinHilos()
+        {
+            Simulacion s = new Simulacion();
+            var jugada =new List<byte>(){ 0, 1, 2, 3};
+            int cantSimulaciones = 15_000_000;
+
+            var tiempoSinHilos = Stopwatch.StartNew();
+            s.simularSinHilos(bolillero, jugada, cantSimulaciones);
+            tiempoSinHilos.Stop();
+
+            var tiempoConHilos = Stopwatch.StartNew();
+            s.simularConHilos(bolillero, jugada, cantSimulaciones, 4);
+            tiempoConHilos.Stop();
+            
+            var miliSin = tiempoSinHilos.ElapsedMilliseconds;
+            var miliCon = tiempoConHilos.ElapsedMilliseconds;
+            
+            Assert.True(miliCon < miliSin);
         }
     }
 }

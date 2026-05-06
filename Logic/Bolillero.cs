@@ -3,17 +3,26 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Logic;
 
-public class Bolillero : IBolillero
+public class Bolillero : IBolillero, ICloneable
 {
     public List<byte> bolillas {get; set;} = new();
-    public List<byte> BolillasSacadas {get; set;} = new();
+    public List<byte> bolillasSacadas {get; set;} = new();
     public IRandom r;
     public Bolillero(int cantidad, IRandom r)
     {
-        for( byte i=0; i < cantidad ; i++ ) bolillas.Add(i);
+        for( byte i=0; i < cantidad ; i++ ) 
+            bolillas.Add(i);
+
         this.r = r;
     }
 
+    private Bolillero(IRandom r) => this.r = r;
+    public object Clone() => new Bolillero(r)
+    {
+        bolillas = new List<byte>(bolillas),
+        bolillasSacadas = new List<byte>(bolillasSacadas)
+    };
+    
     public byte SacarBolilla()
     {
         var indice = r.Next(bolillas.Count);
@@ -21,7 +30,7 @@ public class Bolillero : IBolillero
  
         bolillas.RemoveAt(indice);
 
-        BolillasSacadas.Add(bolilla);
+        bolillasSacadas.Add(bolilla);
 
         return bolilla;
     }
@@ -33,10 +42,8 @@ public class Bolillero : IBolillero
         {
             byte bolillaSacada = SacarBolilla();
             if(bolillaSacada != bolillaEsperada ) 
-                return false;
-            
+                return false;   
         }
-
         return true;
     }
 
@@ -54,7 +61,7 @@ public class Bolillero : IBolillero
     }
     public void ReIngresar()
     {
-        bolillas.AddRange(BolillasSacadas);
-        BolillasSacadas.Clear();
+        bolillas.AddRange(bolillasSacadas);
+        bolillasSacadas.Clear();
     }
 }
