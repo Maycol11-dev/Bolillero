@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 using Xunit;
 using System.Diagnostics;
 using Logic;
+using Logic.Utilidad;
 
 namespace Tests
 {
     public class UnitTest1
     {
         private Bolillero bolillero;
+        private Simulacion s = new Simulacion();
+        private List<byte> jugada =new List<byte>(){ 0, 1, 2, 3};
         public UnitTest1() => bolillero = new Bolillero(10, new Primero());
 
         [Fact]
@@ -66,22 +69,50 @@ namespace Tests
         [Fact]
         public void TiempoConHilos_es_menor_a_SinHilos()
         {
-            Simulacion s = new Simulacion();
-            var jugada =new List<byte>(){ 0, 1, 2, 3};
             int cantSimulaciones = 15_000_000;
+            // var tiempoSinHilos = Stopwatch.StartNew();
+            // s.simularSinHilos(bolillero, jugada, cantSimulaciones);
+            // tiempoSinHilos.Stop();
 
-            var tiempoSinHilos = Stopwatch.StartNew();
-            s.simularSinHilos(bolillero, jugada, cantSimulaciones);
-            tiempoSinHilos.Stop();
+            // var tiempoConHilos = Stopwatch.StartNew();
+            // s.simularConHilos(bolillero, jugada, cantSimulaciones, 4);
+            // tiempoConHilos.Stop();
+            
+            // var miliSin = tiempoSinHilos.ElapsedMilliseconds;
+            // var miliCon = tiempoConHilos.ElapsedMilliseconds;
 
-            var tiempoConHilos = Stopwatch.StartNew();
-            s.simularConHilos(bolillero, jugada, cantSimulaciones, 4);
-            tiempoConHilos.Stop();
-            
-            var miliSin = tiempoSinHilos.ElapsedMilliseconds;
-            var miliCon = tiempoConHilos.ElapsedMilliseconds;
-            
+            var miliSin = AutoStop.StartNewSync(() =>
+                s.simularSinHilos(bolillero, jugada, cantSimulaciones));
+            var miliCon = AutoStop.StartNewSync(() =>
+                s.simularConHilos(bolillero, jugada, cantSimulaciones, 4));
+
             Assert.True(miliCon < miliSin);
         }
+        
+        // [Fact]
+        // public async Task TiempoSincronico_es_mayor_a_Asincronico()
+        // {
+        //     int cantSimulaciones = 200_000;
+        //     var timeAsync = await AutoStop.StartNewAsync(async () => 
+        //     {
+        //         Task<long>[] SimulaAsync = new Task<long>[50];
+        //         for (int i = 0; i < 50; i++)
+        //         {               
+        //             SimulaAsync[i] = Task.Run(() => s.simularConHilosAsync(bolillero, jugada, cantSimulaciones, 4));
+        //         }
+
+        //         await Task.WhenAll(SimulaAsync);
+        //     });
+
+        //     var timeSync = AutoStop.StartNewSync(() =>
+        //     {
+        //         for (int i = 0; i < 20; i++)
+        //         {
+        //             s.simularConHilos(bolillero, jugada, cantSimulaciones, 4);
+        //         }
+        //     });
+
+        //     Assert.True(timeSync > timeAsync);
+        //}
     }
 }

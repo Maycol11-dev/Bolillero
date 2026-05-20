@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\edson\\Documents\\Bolillero\\Logic\\Logic.csproj": {}
+    "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Logic\\Logic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\edson\\Documents\\Bolillero\\Logic\\Logic.csproj": {
+    "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Logic\\Logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\edson\\Documents\\Bolillero\\Logic\\Logic.csproj",
+        "projectUniqueName": "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Logic\\Logic.csproj",
         "projectName": "Logic",
-        "projectPath": "C:\\Users\\edson\\Documents\\Bolillero\\Logic\\Logic.csproj",
+        "projectPath": "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Logic\\Logic.csproj",
         "packagesPath": "C:\\Users\\edson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\edson\\Documents\\Bolillero\\Logic\\obj\\",
+        "outputPath": "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Logic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\edson\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -5529,11 +5529,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\edson\\Documents\\Bolillero\\Test\\Test.csproj",
+      "projectUniqueName": "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Test\\Test.csproj",
       "projectName": "Test",
-      "projectPath": "C:\\Users\\edson\\Documents\\Bolillero\\Test\\Test.csproj",
+      "projectPath": "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Test\\Test.csproj",
       "packagesPath": "C:\\Users\\edson\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\edson\\Documents\\Bolillero\\Test\\obj\\",
+      "outputPath": "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\edson\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -5548,8 +5548,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\edson\\Documents\\Bolillero\\Logic\\Logic.csproj": {
-              "projectPath": "C:\\Users\\edson\\Documents\\Bolillero\\Logic\\Logic.csproj"
+            "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Logic\\Logic.csproj": {
+              "projectPath": "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Logic\\Logic.csproj"
             }
           }
         }

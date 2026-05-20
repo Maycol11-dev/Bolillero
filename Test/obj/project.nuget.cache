@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UXBrzb86/tg=",
+  "dgSpecHash": "Hv1TEKt5pac=",
   "success": true,
-  "projectFilePath": "C:\\Users\\edson\\Documents\\Bolillero\\Test\\Test.csproj",
+  "projectFilePath": "c:\\Users\\edson\\Documents\\6toComputacion\\Bolillero\\Test\\Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\edson\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\edson\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
